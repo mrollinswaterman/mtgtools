@@ -1,8 +1,11 @@
 Quantity,Name
 1,Abrade
 1,"Agadeem's Awakening // Agadeem, the Undercrypt"
+1,Ambuscade Shaman
+1,Apprentice Necromancer
 1,Arcane Signet
 1,Archetype of Aggression
+1,"Ardoz, Cobbler of War"
 1,Ashenmoor Liege
 1,Baleful Mastery
 1,Berserkers' Onslaught
@@ -30,6 +33,7 @@ Quantity,Name
 1,"Garna, Bloodfist of Keld"
 1,"Garna, the Bloodflame"
 1,Generator Servant
+1,Glass of the Guildpact
 1,Hagra Mauling // Hagra Broodpit
 1,Heroes' Podium
 1,Idol of Oblivion
@@ -44,6 +48,7 @@ Quantity,Name
 13,Mountain
 1,Myriad Landscape
 1,Night's Whisper
+1,Ogre Battledriver
 1,"Orthion, Hero of Lavabrink"
 1,Path of Ancestry
 1,Plague Wind
@@ -63,6 +68,7 @@ Quantity,Name
 1,Smoldering Marsh
 1,Sol Ring
 1,Solemn Doomguide
+1,Stinkdrinker Bandit
 11,Swamp
 1,Tainted Peak
 1,Talisman of Indulgence
@@ -77,3 +83,4 @@ Quantity,Name
 1,Wild Magic Surge
 1,Withering Torment
 1,"Zariel, Archduke of Avernus"
+
