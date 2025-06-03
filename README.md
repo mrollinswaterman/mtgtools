@@ -1,2 +1,2 @@
-# MTG-scripts
-Random assortment of MTG-related Python scripts I wrote for my own use
+# mtgtools
+CLI for analyzing MtG cards with different parameters
