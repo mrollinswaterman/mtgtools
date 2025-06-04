@@ -2,7 +2,7 @@ import requests
 import json
 import time
 
-def fetch(input:list[str]):
+def fetch(input:list[str], mode):
     from cardparser import Card, create_df_card
     fetched_cards = []
 
@@ -12,9 +12,9 @@ def fetch(input:list[str]):
         response = response.content.decode('utf8')
         data = json.loads(response)
         if "card_faces" in data:
-            fetched_cards.extend(create_df_card(data))
+            fetched_cards.extend(create_df_card(data, mode))
         else:
-            fetched_cards.append(Card(data))
+            fetched_cards.append(Card(data, mode))
 
         #delay to not surpass scryfall's rate limits
         time.sleep(0.100)
