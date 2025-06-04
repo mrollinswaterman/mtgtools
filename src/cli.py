@@ -1,6 +1,7 @@
 import sys
 import argparse
 from cardparser import Card
+import re
 
 MASTER_LIST = []
 card_objects:list[Card] = []
@@ -34,16 +35,18 @@ if args.mode == "score" or args.mode == "s":
     #print("doing score stuff")
     pass
 
+if not args.mode: args.mode = ""
+
 if args.input:
     #print(f"reading file {args.input}")
     from readfile import read
     from cardfetcher import fetch
     MASTER_LIST = read(args.input)
-    card_objects = fetch(MASTER_LIST)
+    card_objects = fetch(MASTER_LIST, args.mode)
 
 if args.parameter:
     if args.parameter in allowed_parameters:
-        print(f"analyzing with parameter '{args.parameter}' (higher numbers are better)")
+        print(f"analyzing with parameter '{args.parameter}' in {args.mode} mode (higher numbers are better)")
         skipped = 0
         final:list[Card] = []
         for card in card_objects:
@@ -60,7 +63,5 @@ if args.parameter:
     else:
         print(f"Invalid parameter '{args.parameter}'. Please try again.")
         sys.exit(1)
-
-
 
 print()
