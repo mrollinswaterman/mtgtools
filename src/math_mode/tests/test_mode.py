@@ -1,4 +1,3 @@
-import pytest
 from src.cardfetcher import fetch
 from src.cardparser import Card
 
