@@ -1,0 +1,15 @@
+[project]
+name = "mtgtools"
+version = "0.1.0"
+description = "see https://github.com/mrollinswaterman/mtgtools for details"
+dependencies = [
+  "requests",
+  "json",
+]
+
+[tool.pytest.ini_options]
+python_files = [
+    "tests.py",
+    "test_*.py",
+]
+pythonpath = ["src/"]
