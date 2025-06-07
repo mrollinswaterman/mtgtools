@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ['main', 'dev']
+    paths-ignore: ['docs/**']
+
+  push:
+    branches: ['main', 'dev']
+    paths-ignore: ['docs/**']
+
+# Concurrency control: Only one workflow run per PR branch.
+# In-progress runs for a PR branch are canceled on new pushes.
+# For non-PR events, each run is treated independently.
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  # The linter job runs the same quality checks run by pre-commit
+  # when making a commit. It should pass as long as everyone
+  # is using pre-commit correctly before pushing.
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      # Consider using pre-commit.ci for open source project
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.1
+
+  # run-tests does a basic Django check and runs all the tests
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: pip
+          cache-dependency-path: |
+            requirements/base.txt
+            requirements/local.txt
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements/local.txt
+
+      - name: Test with pytest
+        run: pytest
