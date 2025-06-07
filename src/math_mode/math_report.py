@@ -1,3 +1,4 @@
+import re
 from cardparser import Card, parse_num
 
 class MathReport():
@@ -26,34 +27,38 @@ class MathReport():
             self._score = int(self.card.toughness) / self.card.cmc
         else: self._score = None
 
-    def find_star(self, pattern_string) -> bool:
-        pattern_chunks = pattern_string.split("*")
-        flag1 = pattern_chunks[0]
-        flag2 = pattern_chunks[1]
-        search_in = self.card.oracle_text
-
-        # find flag 1, move pointer to flag1's index
-        flag1_idx = search_in.find(flag1)
-        if flag1_idx == -1: return ""
-        search_in = search_in[flag1_idx:]
-
-        #starting from the new pointer, find flag2
-        flag2_idx = search_in.find(flag2)
-        if flag2_idx == -1: return ""
-
-        # return the chunk of text between flag1 and flag2
-        star = search_in[len(flag1)+1:flag2_idx]
-        return star.strip()
+    def match_exp(self, exp):
+        return re.search(exp, self.card.oracle_text)
     
     def draw2cmc(self) -> None:
+        # regex to find out if a card draws cards
+        exp = r"[Dd]raw[s]* .* card"
+        match = self.match_exp(exp)
 
-        card_count = self.find_star("raw*card")
-        card_count = parse_num(card_count)
-        if not card_count: 
+        # if we find a match in our oracle text:
+        if match:
+            # pull out the stringified number (ie. "a", "two", "four", etc)
+            cards = self.card.oracle_text[match.start():match.end()]
+            cards = cards[cards.find(" ")+1:]
+            cards = cards[0:cards.find(" ")]
+
+            # parse it and find the card's score
+            self._score = parse_num(cards) / self.card.cmc
+        else:
             self._score = None
-            return
+        return
 
-        self._score = card_count / self.card.cmc
+    def tokens2cmc(self) -> None:
+        # see draw2cmc function for an explanation of what this does
+
+        exp = r"[Cc]reate .* [X\d]/[X\d]"
+        match = self.match_exp(exp)
+        if match:
+            tokens = self.card.oracle_text[match.start()+len("create "):]
+            tokens = tokens[0:tokens.find(" ")]
+            self._score = parse_num(tokens) / self.card.cmc
+        else:
+            self._score = None
         return
 
     def __str__(self):

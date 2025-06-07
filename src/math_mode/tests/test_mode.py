@@ -61,3 +61,6 @@ def test_tou2cmc():
 
 def test_draw2cmc():
     run_parameter_test("draw2cmc")
+
+def test_tokens2cmc():
+    run_parameter_test("tokens2cmc")
