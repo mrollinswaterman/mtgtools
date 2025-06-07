@@ -1,7 +1,7 @@
 # mtgtools
 CLI for analyzing MtG cards with different parameters
 
-# Installation:
+# Installation
 WIP
 
 # Usage
