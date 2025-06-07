@@ -1,11 +1,12 @@
 import json
+
 import constants
 
 data = []
 ORCALE = []
 
 class Card():
-    
+
     def __init__(self, name:str, source:dict[str, str]):
 
         self.name = name.lower()
@@ -25,7 +26,7 @@ class Card():
 
             if "whenever" in self.text:
                 self.caveat = True
-        
+
         #determine card's color combo, if applicable
         if "colors" in source:
             self.my_colors = ""
@@ -61,7 +62,7 @@ class Card():
 
         except ValueError:
             return None
-    
+
     def find_additional_costs(self):
         phrase = "additional cost to cast this spell"
         info = self.find(phrase)
@@ -91,7 +92,7 @@ class Card():
         num_cards = None
         if not self.text: return None
         index = self.find("draw")
-        if index is None: 
+        if index is None:
             index = self.find("draws")
         if index is None: return None
         num_cards = self.words[index+1]
@@ -143,7 +144,7 @@ class Card():
 
     def __str__(self):
         return f"{self.raw_data["name"]}: {self.score}"
-    
+
     def pump(self):
         phrase = "equipped creature gets"
         index = self.find(phrase)
@@ -162,7 +163,7 @@ class Card():
         #self.value += toughness / 2
 
 def read_lookup(file_name:str) -> list[str]:
-    with open(file_name+".txt", 'r') as file:
+    with open(file_name+".txt") as file:
         content = file.read()
     return content.split("\n")[0:len(content.split("\n"))-1]
 
@@ -181,7 +182,7 @@ def run(filename:str, filter):
             card.filter(filter)
             ret[card.color].append(card)
 
-    
+
     for color in ret:
         if len(ret[color]) == 0:
             continue

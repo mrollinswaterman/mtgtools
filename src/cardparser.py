@@ -1,23 +1,25 @@
 from __future__ import annotations
+
 import re
 
-class Card():
-    def __init__(self, source:dict, mode:str):
+
+class Card:
+    def __init__(self, source: dict, mode: str):
         from math_mode.math_report import MathReport
 
-        self.report:MathReport = None
+        self.report: MathReport = None
 
         if mode == "" or mode == "math":
-            self.report:MathReport = MathReport(self)
+            self.report: MathReport = MathReport(self)
         elif mode == "score":
-            self.report:ScoreReport = ScoreReport(self)
+            self.report: ScoreReport = ScoreReport(self)
 
         self.name = source["name"]
         self.cmc = source["cmc"]
         self.type_line = source["type_line"]
         self.oracle_text = source["oracle_text"]
 
-        #strip reminder text
+        # strip reminder text
         reminder = r"\(.*.\)"
 
         while "(" in self.oracle_text:
@@ -36,10 +38,12 @@ class Card():
     def __str__(self):
         return f"{self.cmc} | {self.name}"
 
-class ScoreReport():
+
+class ScoreReport:
     pass
 
-def create_df_card(data:dict, mode:str) -> list[Card]:
+
+def create_df_card(data: dict, mode: str) -> list[Card]:
     front = data
     for i in data["card_faces"][0]:
         front[i] = data["card_faces"][0][i]
@@ -52,10 +56,11 @@ def create_df_card(data:dict, mode:str) -> list[Card]:
 
     return [Card(front, mode), Card(back, mode)]
 
-def parse_mana_cost(input:str) -> float:
+
+def parse_mana_cost(input: str) -> float:
     if input == "":
         return ""
-    colorless_index = input.index("}")+1
+    colorless_index = input.index("}") + 1
     colorless = input[0:colorless_index]
     input = input[colorless_index:]
     color = input.count("{")
@@ -65,10 +70,14 @@ def parse_mana_cost(input:str) -> float:
     except TypeError:
         color += 1
         colorless = 0.0
-    
+
     return float(colorless + color)
 
-def parse_num(text:str) -> int|bool:
+
+def parse_num(text: str) -> int | bool:
     from constants import TO_NUM
-    if text in TO_NUM: return TO_NUM[text]
-    else: return False
+
+    if text in TO_NUM:
+        return TO_NUM[text]
+    else:
+        return False
