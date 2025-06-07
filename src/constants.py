@@ -27,24 +27,17 @@ TO_NUM = {
     "four": 4,
     "five": 5,
     "six": 6,
-    "seven": 7
+    "seven": 7,
 }
 
-REMOVAL = {
-    "destroy": 0,
-    "exile": .3,
-    "remove": .3
-}
+REMOVAL = {"destroy": 0, "exile": 0.3, "remove": 0.3}
 
 PERMANENT_TYPES = {
     "creature": 0.25,
     "artifact": 0.3141,
     "enchantment": 0.3141,
     "planeswalker": 0.125,
-    "permanent": 1.5
+    "permanent": 1.5,
 }
 
-SPELL_TYPES = {
-    "instant": 0.45,
-    "sorcery": 0
-}
+SPELL_TYPES = {"instant": 0.45, "sorcery": 0}

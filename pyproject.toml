@@ -5,6 +5,7 @@ description = "see https://github.com/mrollinswaterman/mtgtools for details"
 dependencies = [
   "requests",
   "json",
+  "pre-commit",
 ]
 
 [tool.pytest.ini_options]
