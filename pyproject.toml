@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "see https://github.com/mrollinswaterman/mtgtools for details"
 dependencies = [
   "requests",
-  "json",
   "pre-commit",
 ]
 
