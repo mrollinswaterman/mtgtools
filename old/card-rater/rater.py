@@ -143,7 +143,7 @@ class Card():
         self.value += num_tokens
 
     def __str__(self):
-        return f"{self.raw_data["name"]}: {self.score}"
+        return f"{self.raw_data['name']}: {self.score}"
 
     def pump(self):
         phrase = "equipped creature gets"
