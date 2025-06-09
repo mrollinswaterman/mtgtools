@@ -19,7 +19,9 @@ class MathReport:
         if self.card.power.isdigit():
             self._score = int(self.card.power) / self.card.cmc
         else:
-            self._score = None
+            self._score = 0
+
+        return
 
     def tou2cmc(self) -> None:
         if not self.card.toughness:

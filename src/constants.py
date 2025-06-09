@@ -17,19 +17,23 @@ COLORS = {
     "GR": "GRUUL",
 }
 
+
+# Keyword Weights:
+# Each keyword gives +1 to the cards score, plus the weight listed below
 KEYWORDS = {
-    "Haste": 1.0,
-    "Double strike": 1.25,
-    "First strike": 1.0,
-    "Trample": 1.25,
+    "Annihilator": 2.0,
+    "Cascade": 1.5,
+    "Deathtouch": 0.5,
+    "Double strike": 0.75,
+    "First strike": 0.5,
     "Flying": 1.25,
-    "Deathtouch": 0.9,
-    "Vigilance": 0.70,
-    "Cascade": 1.0,
-    "Annihilator": 1.75,
-    "Hexproof": 1.75,
-    "Ward": 1.5,
-    "Lifelink": 0.9,
+    "Haste": 0.5,
+    "Hexproof": 1.0,
+    "Indestructible": 1.25,
+    "Lifelink": 0.2,
+    "Trample": 0.5,
+    "Vigilance": 0.25,
+    "Ward": 0.75,
 }
 
 TO_NUM = {
