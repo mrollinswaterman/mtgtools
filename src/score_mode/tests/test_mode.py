@@ -28,7 +28,7 @@ def find_keyword_score(card_name: str):
 CONTROL = {
     "pow2cmc": {
         "Shrike Force": (1.0 + find_keyword_score("Shrike Force")) / 3.0,
-        "Lightning Skelemental": (3.0 + find_keyword_score("Lightning Skelemental"))
+        "Lightning Skelemental": (6.0 + find_keyword_score("Lightning Skelemental"))
         / 3.0,
         "Blood Artist": 0.0,
         "Village Rites": None,
@@ -75,9 +75,9 @@ def run_parameter_test(parameter: str):
         assert test_objects[card_name].report.score == CONTROL[parameter][card_name]
 
 
-# def test_pow2cmc():
-# run_parameter_test("pow2cmc")
+def test_pow2cmc():
+    run_parameter_test("pow2cmc")
 
 
-# def test_tou2cmc():
-# run_parameter_test("tou2cmc")
+def test_tou2cmc():
+    run_parameter_test("tou2cmc")

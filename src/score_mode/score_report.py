@@ -24,15 +24,13 @@ class ScoreReport(MathReport):
 
         self._score = 0
         if self.card.power.isdigit():
-            numerator = int(self.card.power)
+            numerator = float(self.card.power)
         else:
-            numerator = 0
+            numerator = 0.0
 
         numerator += self.keyword_score()
 
         self._score = numerator / self.card.cmc
-
-        return
 
     def tou2cmc(self):
         super().tou2cmc()
@@ -41,10 +39,12 @@ class ScoreReport(MathReport):
 
         self._score = 0
         if self.card.toughness.isdigit():
-            numerator = int(self.card.toughness)
+            numerator = float(self.card.toughness)
         else:
-            numerator = 0
+            numerator = 0.0
 
         numerator += self.keyword_score()
 
-        return numerator / self.card.cmc
+        self._score = numerator / self.card.cmc
+
+        return
