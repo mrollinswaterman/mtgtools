@@ -6,6 +6,7 @@ import re
 class Card:
     def __init__(self, source: dict, mode: str):
         from math_mode.math_report import MathReport
+        from score_mode.score_report import ScoreReport
 
         self.report: MathReport = None
 
@@ -37,10 +38,6 @@ class Card:
 
     def __str__(self):
         return f"{self.cmc} | {self.name}"
-
-
-class ScoreReport:
-    pass
 
 
 def create_df_card(data: dict, mode: str) -> list[Card]:
